@@ -11,12 +11,12 @@ import { GoogleGenAI } from "@google/genai";
 // Ejemplo: const MANUAL_API_KEY = "AIzaSyDxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
 // =============================================================================================
 
-const MANUAL_API_KEY = ""; 
+const MANUAL_API_KEY = "AIzaSyBDT_ibDYIqkx-SCFilgrTfjq82JeSEabg"; 
 
 // =============================================================================================
 
 const getAI = () => new GoogleGenAI({ 
-  apiKey: MANUAL_API_KEY || process.env.API_KEY || "" 
+  apiKey: MANUAL_API_KEY || process.env.API_KEY || "AIzaSyBDT_ibDYIqkx-SCFilgrTfjq82JeSEabg" 
 });
 
 const SCHOOL_CONTEXT = `
