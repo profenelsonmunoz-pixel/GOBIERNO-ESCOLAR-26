@@ -1,7 +1,23 @@
 
 import { GoogleGenAI } from "@google/genai";
 
-const getAI = () => new GoogleGenAI({ apiKey: process.env.API_KEY || "" });
+// =============================================================================================
+// 🔑 ZONA DE CONFIGURACIÓN DE LA API KEY (IMPORTANTE)
+// =============================================================================================
+// Si no estás usando un archivo .env, puedes pegar tu API Key de Google Gemini directamente aquí.
+// 1. Consigue tu llave en: https://aistudio.google.com/app/apikey
+// 2. Pégala dentro de las comillas vacías abajo.
+//
+// Ejemplo: const MANUAL_API_KEY = "AIzaSyDxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
+// =============================================================================================
+
+const MANUAL_API_KEY = ""; 
+
+// =============================================================================================
+
+const getAI = () => new GoogleGenAI({ 
+  apiKey: MANUAL_API_KEY || process.env.API_KEY || "" 
+});
 
 const SCHOOL_CONTEXT = `
 Institución Educativa Nuestra Señora de la Candelaria (IENSECAN).
