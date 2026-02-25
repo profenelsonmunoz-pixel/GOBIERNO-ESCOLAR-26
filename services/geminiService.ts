@@ -57,7 +57,7 @@ export const generateAIResponse = async (prompt: string) => {
 
   try {
     const response = await ai.models.generateContent({
-      model: "gemini-3-flash-preview",
+      model: "gemini-2.0-flash",
       contents: prompt,
       config: {
         systemInstruction: systemInstruction,
@@ -72,6 +72,9 @@ export const generateAIResponse = async (prompt: string) => {
     return response.text || "Lo siento, no pude procesar tu solicitud.";
   } catch (error: any) {
     console.error("Gemini Error:", error);
+    if (error.message?.includes("429") || error.message?.includes("RESOURCE_EXHAUSTED")) {
+      return "⚠️ Has excedido tu cuota diaria gratuita de la API. Por favor intenta mañana o usa otra API Key.";
+    }
     return `Error: ${error.message || "Intenta más tarde."}`;
   }
 };
@@ -80,7 +83,7 @@ export const generateCampaignStrategy = async (name: string, role: string, focus
   const ai = getAI();
   try {
     const response = await ai.models.generateContent({
-      model: "gemini-3-flash-preview",
+      model: "gemini-2.0-flash",
       contents: `Perfil: Nombre: ${name}, Cargo: ${role}, Tema: ${focus}. Genera slogan y propuestas.`,
       config: {
         systemInstruction: `
@@ -101,6 +104,9 @@ export const generateCampaignStrategy = async (name: string, role: string, focus
     return response.text || "Error generando la estrategia.";
   } catch (error: any) {
     console.error("Gemini Error:", error);
+    if (error.message?.includes("429") || error.message?.includes("RESOURCE_EXHAUSTED")) {
+      return "⚠️ Cuota excedida. Intenta mañana.";
+    }
     return `Error: ${error.message || "Intenta más tarde."}`;
   }
 };
@@ -109,7 +115,7 @@ export const generateDebateAnalysis = async (topic: string) => {
   const ai = getAI();
   try {
     const response = await ai.models.generateContent({
-      model: "gemini-3-flash-preview",
+      model: "gemini-2.0-flash",
       contents: `Tema de la propuesta: "${topic}"`,
       config: {
         systemInstruction: `
@@ -130,6 +136,9 @@ export const generateDebateAnalysis = async (topic: string) => {
     return response.text || "Error analizando el debate.";
   } catch (error: any) {
     console.error("Gemini Error:", error);
+    if (error.message?.includes("429") || error.message?.includes("RESOURCE_EXHAUSTED")) {
+      return "⚠️ Has excedido el límite de uso gratuito de la IA. Por favor intenta más tarde o mañana.";
+    }
     return `Error al preparar el debate: ${error.message || "Intenta de nuevo."}`;
   }
 };
