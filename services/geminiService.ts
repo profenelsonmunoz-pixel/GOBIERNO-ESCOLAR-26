@@ -61,12 +61,18 @@ export const generateAIResponse = async (prompt: string) => {
       contents: prompt,
       config: {
         systemInstruction: systemInstruction,
+        safetySettings: [
+          { category: "HARM_CATEGORY_HARASSMENT", threshold: "BLOCK_NONE" },
+          { category: "HARM_CATEGORY_HATE_SPEECH", threshold: "BLOCK_NONE" },
+          { category: "HARM_CATEGORY_SEXUALLY_EXPLICIT", threshold: "BLOCK_NONE" },
+          { category: "HARM_CATEGORY_DANGEROUS_CONTENT", threshold: "BLOCK_NONE" },
+        ]
       }
     });
     return response.text || "Lo siento, no pude procesar tu solicitud.";
-  } catch (error) {
+  } catch (error: any) {
     console.error("Gemini Error:", error);
-    return "Error al conectar con el asistente de IA. Por favor, intenta más tarde.";
+    return `Error: ${error.message || "Intenta más tarde."}`;
   }
 };
 
@@ -83,13 +89,19 @@ export const generateCampaignStrategy = async (name: string, role: string, focus
           Asegúrate de que las propuestas sean viables y correspondan a las funciones legales del cargo seleccionado (${role}).
           Genera un slogan corto de alto impacto y 2 propuestas breves basadas en el tema central.
           Formato: Markdown legible.
-        `
+        `,
+        safetySettings: [
+          { category: "HARM_CATEGORY_HARASSMENT", threshold: "BLOCK_NONE" },
+          { category: "HARM_CATEGORY_HATE_SPEECH", threshold: "BLOCK_NONE" },
+          { category: "HARM_CATEGORY_SEXUALLY_EXPLICIT", threshold: "BLOCK_NONE" },
+          { category: "HARM_CATEGORY_DANGEROUS_CONTENT", threshold: "BLOCK_NONE" },
+        ]
       }
     });
     return response.text || "Error generando la estrategia.";
-  } catch (error) {
+  } catch (error: any) {
     console.error("Gemini Error:", error);
-    return "Error al generar la campaña.";
+    return `Error: ${error.message || "Intenta más tarde."}`;
   }
 };
 
@@ -106,12 +118,18 @@ export const generateDebateAnalysis = async (topic: string) => {
           Genera 2 argumentos fuertes A FAVOR y 2 posibles CONTRA-ARGUMENTOS que usaría un oponente.
           Sé breve, educativo y usa un lenguaje apropiado para estudiantes.
           Verifica si la propuesta es legalmente viable según las funciones del gobierno escolar.
-        `
+        `,
+        safetySettings: [
+          { category: "HARM_CATEGORY_HARASSMENT", threshold: "BLOCK_NONE" },
+          { category: "HARM_CATEGORY_HATE_SPEECH", threshold: "BLOCK_NONE" },
+          { category: "HARM_CATEGORY_SEXUALLY_EXPLICIT", threshold: "BLOCK_NONE" },
+          { category: "HARM_CATEGORY_DANGEROUS_CONTENT", threshold: "BLOCK_NONE" },
+        ]
       }
     });
     return response.text || "Error analizando el debate.";
-  } catch (error) {
+  } catch (error: any) {
     console.error("Gemini Error:", error);
-    return "Error al preparar el debate.";
+    return `Error al preparar el debate: ${error.message || "Intenta de nuevo."}`;
   }
 };
