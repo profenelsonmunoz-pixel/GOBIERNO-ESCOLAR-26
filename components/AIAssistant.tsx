@@ -1,7 +1,7 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import { 
-  Sparkles, MessageSquare, PenTool, Mic, Send, CheckCircle2 
+  Sparkles, MessageSquare, PenTool, Mic, Send, CheckCircle2, RotateCcw 
 } from '../constants';
 import { Message, CampaignData } from '../types';
 import { 
@@ -32,6 +32,23 @@ const AIAssistant: React.FC = () => {
   useEffect(() => {
     scrollToBottom();
   }, [messages]);
+
+  const handleResetChat = () => {
+    setMessages([
+      { role: 'system', content: '👋 ¡Hola! Soy el Asistente Democrático de la IENSECAN. Pregúntame sobre fechas, funciones de los cargos o cómo participar.' }
+    ]);
+    setInput('');
+  };
+
+  const handleResetCampaign = () => {
+    setCampaignData({ name: '', role: 'Personero', focus: '' });
+    setGeneratedCampaign(null);
+  };
+
+  const handleResetDebate = () => {
+    setDebateTopic('');
+    setDebateResult(null);
+  };
 
   const handleChatSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -107,6 +124,16 @@ const AIAssistant: React.FC = () => {
         <div className="flex-1 flex flex-col relative bg-white overflow-hidden">
           {activeAiTab === 'chat' && (
             <>
+              <div className="p-3 border-b border-slate-100 flex justify-between items-center bg-slate-50/50">
+                <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest ml-2">Chat con IA</span>
+                <button 
+                  onClick={handleResetChat}
+                  className="text-xs font-bold text-slate-500 hover:text-[#1E3A8A] flex items-center gap-1.5 px-3 py-1.5 rounded-lg hover:bg-slate-100 transition-colors"
+                  title="Borrar chat"
+                >
+                  <RotateCcw size={14} /> Nueva Consulta
+                </button>
+              </div>
               <div className="flex-1 overflow-y-auto p-6 space-y-4 no-scrollbar">
                 {messages.map((msg, idx) => (
                   <div key={idx} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
@@ -153,7 +180,15 @@ const AIAssistant: React.FC = () => {
           )}
 
           {activeAiTab === 'campaign' && (
-            <div className="p-8 overflow-y-auto no-scrollbar">
+            <div className="p-8 overflow-y-auto no-scrollbar relative">
+              <div className="absolute top-4 right-4">
+                <button 
+                  onClick={handleResetCampaign}
+                  className="text-xs font-bold text-slate-400 hover:text-[#F59E0B] flex items-center gap-1.5 px-3 py-1.5 rounded-lg hover:bg-slate-50 transition-colors"
+                >
+                  <RotateCcw size={14} /> Limpiar
+                </button>
+              </div>
               <div className="max-w-md mx-auto space-y-6">
                 <div className="text-center space-y-2 mb-4">
                   <h3 className="font-black text-xl text-[#1E3A8A]">Crea tu Estrategia</h3>
@@ -214,7 +249,15 @@ const AIAssistant: React.FC = () => {
           )}
 
           {activeAiTab === 'debate' && (
-            <div className="p-8 overflow-y-auto no-scrollbar">
+            <div className="p-8 overflow-y-auto no-scrollbar relative">
+              <div className="absolute top-4 right-4">
+                <button 
+                  onClick={handleResetDebate}
+                  className="text-xs font-bold text-slate-400 hover:text-purple-600 flex items-center gap-1.5 px-3 py-1.5 rounded-lg hover:bg-slate-50 transition-colors"
+                >
+                  <RotateCcw size={14} /> Limpiar
+                </button>
+              </div>
               <div className="max-w-md mx-auto space-y-6">
                 <div className="text-center space-y-2 mb-4">
                   <h3 className="font-black text-xl text-purple-800">Entrenador de Debate</h3>
