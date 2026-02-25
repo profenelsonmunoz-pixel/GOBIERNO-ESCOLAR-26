@@ -395,7 +395,10 @@ const App: React.FC = () => {
                     {[
                       "Promover el cumplimiento de los derechos y deberes de los estudiantes.",
                       "Recibir y evaluar quejas sobre el incumplimiento de los deberes de la comunidad.",
-                      "Presentar ante el Rector las solicitudes que considere necesarias para proteger los derechos estudiantiles."
+                      "Presentar ante el Rector las solicitudes que considere necesarias para proteger los derechos estudiantiles.",
+                      "Apelar ante el Consejo Directivo las decisiones del Rector respecto a sus peticiones.",
+                      "Promover la ejecución de las leyes, estatutos y reglamentos que rigen la institución.",
+                      "Organizar foros u otras formas de deliberación estudiantil."
                     ].map((text, i) => (
                       <li key={i} className="flex gap-4 text-slate-700 font-medium leading-relaxed">
                         <CheckCircle2 size={24} className="text-[#F59E0B] shrink-0" />
@@ -422,7 +425,10 @@ const App: React.FC = () => {
                     {[
                       "Vigilar la correcta ejecución de los recursos y bienes de la institución.",
                       "Ejercer control social sobre los recursos del PAE (Alimentación Escolar).",
-                      "Presentar informes periódicos sobre la gestión institucional al cuerpo estudiantil."
+                      "Presentar informes periódicos sobre la gestión institucional al cuerpo estudiantil.",
+                      "Velar por el cuidado del medio ambiente y los bienes físicos de la institución.",
+                      "Canalizar las inquietudes de la comunidad sobre irregularidades en la gestión financiera.",
+                      "Promover la cultura de la transparencia y el cuidado de lo público."
                     ].map((text, i) => (
                       <li key={i} className="flex gap-4 text-slate-700 font-medium leading-relaxed">
                         <CheckCircle2 size={24} className="text-[#1E3A8A] shrink-0" />
