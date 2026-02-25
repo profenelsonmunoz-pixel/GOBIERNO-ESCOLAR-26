@@ -207,12 +207,16 @@ const App: React.FC = () => {
                     <span className="text-xs text-[#F59E0B] font-black uppercase tracking-widest">PROCESO ELECTORAL 2026</span>
                   </div>
                   
-                  <div className="space-y-4">
-                    <h2 className="text-6xl md:text-8xl font-black text-white leading-[0.85] tracking-tighter">
-                      GOBIERNO <br/>
-                      <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#F59E0B] to-[#FCD34D]">ESCOLAR</span>
+                  <div className="space-y-6">
+                    <h2 className="font-black text-white leading-[0.9] tracking-tighter">
+                      <span className="block text-5xl md:text-7xl lg:text-8xl">
+                        GOBIERNO <span className="text-[#F59E0B]">ESCOLAR</span>
+                      </span>
+                      <span className="block text-3xl md:text-5xl lg:text-6xl text-blue-200 mt-2 md:mt-4 tracking-widest border-t-4 border-white/10 pt-4 inline-block">
+                        ELECCIONES 2026
+                      </span>
                     </h2>
-                    <p className="text-2xl text-blue-100 font-light border-l-[6px] border-[#F59E0B] pl-6 mt-6 max-w-lg">
+                    <p className="text-xl md:text-2xl text-blue-100 font-light border-l-[6px] border-[#F59E0B] pl-6 max-w-lg">
                       Liderazgo, transparencia y democracia en acción.
                     </p>
                   </div>
